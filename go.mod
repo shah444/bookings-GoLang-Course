@@ -1,4 +1,4 @@
-module github.com/shah444/bookings
+module github.com/shah444/bookings-GoLang-Course
 
 go 1.17
 

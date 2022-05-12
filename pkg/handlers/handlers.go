@@ -3,9 +3,9 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/shah444/bookings/pkg/config"
-	"github.com/shah444/bookings/pkg/models"
-	"github.com/shah444/bookings/pkg/render"
+	"github.com/shah444/bookings-GoLang-Course/pkg/config"
+	"github.com/shah444/bookings-GoLang-Course/pkg/models"
+	"github.com/shah444/bookings-GoLang-Course/pkg/render"
 )
 
 // Repository is the respository type
