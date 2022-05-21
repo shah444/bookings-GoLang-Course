@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/shah444/bookings-GoLang-Course/pkg/config"
-	"github.com/shah444/bookings-GoLang-Course/pkg/handlers"
-	"github.com/shah444/bookings-GoLang-Course/pkg/render"
+	"github.com/shah444/bookings-GoLang-Course/internal/config"
+	"github.com/shah444/bookings-GoLang-Course/internal/handlers"
+	"github.com/shah444/bookings-GoLang-Course/internal/render"
 
 	"github.com/alexedwards/scs/v2"
 )
