@@ -1,0 +1,10 @@
+mode: set
+github.com/shah444/bookings-GoLang-Course/cmd/web/routers.go:13.49,42.2 18 1
+github.com/shah444/bookings-GoLang-Course/cmd/web/main.go:23.13,25.16 2 0
+github.com/shah444/bookings-GoLang-Course/cmd/web/main.go:29.2,37.16 4 0
+github.com/shah444/bookings-GoLang-Course/cmd/web/main.go:25.16,27.3 1 0
+github.com/shah444/bookings-GoLang-Course/cmd/web/main.go:40.18,56.17 10 1
+github.com/shah444/bookings-GoLang-Course/cmd/web/main.go:61.3,69.13 6 1
+github.com/shah444/bookings-GoLang-Course/cmd/web/main.go:56.17,59.4 2 0
+github.com/shah444/bookings-GoLang-Course/cmd/web/middleware.go:17.45,28.2 3 1
+github.com/shah444/bookings-GoLang-Course/cmd/web/middleware.go:31.50,33.2 1 1
