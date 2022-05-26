@@ -1,0 +1,22 @@
+mode: set
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:24.47,28.2 1 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:31.33,33.2 1 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:36.67,42.2 3 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:45.68,54.2 5 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:57.74,67.2 4 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:70.78,72.16 2 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:77.2,90.19 6 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:102.2,104.66 2 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:72.16,75.3 2 0
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:90.19,100.3 4 0
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:108.81,110.9 2 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:117.2,120.97 3 0
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:110.9,115.3 4 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:124.71,126.2 1 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:129.69,131.2 1 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:134.75,136.2 1 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:139.79,143.2 3 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:151.79,158.16 3 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:162.2,163.14 2 1
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:158.16,160.3 1 0
+github.com/shah444/bookings-GoLang-Course/internal/handlers/handlers.go:167.70,169.2 1 1

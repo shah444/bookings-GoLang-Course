@@ -1,0 +1,23 @@
+mode: set
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:21.39,23.2 1 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:25.84,31.2 5 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:34.105,38.18 2 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:44.2,45.9 2 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:49.2,56.16 5 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:61.2,61.12 1 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:38.18,40.3 1 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:40.8,42.3 1 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:45.9,47.3 1 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:56.16,59.3 2 0
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:65.67,70.16 3 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:74.2,74.29 1 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:97.2,97.21 1 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:70.16,72.3 1 0
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:74.29,78.17 3 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:82.3,83.17 2 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:87.3,87.23 1 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:94.3,94.21 1 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:78.17,80.4 1 0
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:83.17,85.4 1 0
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:87.23,89.18 2 1
+github.com/shah444/bookings-GoLang-Course/internal/render/render.go:89.18,91.5 1 0
