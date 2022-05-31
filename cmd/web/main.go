@@ -5,10 +5,12 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/shah444/bookings-GoLang-Course/internal/config"
 	"github.com/shah444/bookings-GoLang-Course/internal/handlers"
+	"github.com/shah444/bookings-GoLang-Course/internal/helpers"
 	"github.com/shah444/bookings-GoLang-Course/internal/models"
 	"github.com/shah444/bookings-GoLang-Course/internal/render"
 
@@ -16,9 +18,11 @@ import (
 )
 
 const portNumber = ":8080"
+
 var session *scs.SessionManager
 
 var app config.AppConfig
+
 // main is the main application fn
 func main() {
 	err := run()
@@ -28,8 +32,8 @@ func main() {
 
 	fmt.Printf("Starting application on port %s\n", portNumber)
 
-	srv := &http.Server {
-		Addr: portNumber,
+	srv := &http.Server{
+		Addr:    portNumber,
 		Handler: routes(&app),
 	}
 
@@ -38,33 +42,37 @@ func main() {
 }
 
 func run() error {
-		// What I am going to put in the session
-		gob.Register(models.Reservation{})
-	
-		// Change this to true during production
-		app.InProduction = false
-	
-		session = scs.New()
-		session.Lifetime = 24 * time.Hour
-		session.Cookie.Persist = true
-		session.Cookie.SameSite = http.SameSiteLaxMode
-		session.Cookie.Secure = app.InProduction
-	
-		app.Session = session
-	
-		tc, err := render.CreateTemplateCache()
-		if err != nil {
-			log.Fatal("Cannot create template cache")
-			return err
-		}
-	
-		app.TemplateCache = tc
-		app.UseCache = false
-	
-		repo := handlers.NewRepo(&app)
-		handlers.NewHandlers(repo)
-	
-		render.NewTemplate(&app)
+	// What I am going to put in the session
+	gob.Register(models.Reservation{})
 
-		return nil
+	// Change this to true during production
+	app.InProduction = false
+
+	app.InfoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	app.ErrorLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+
+	session = scs.New()
+	session.Lifetime = 24 * time.Hour
+	session.Cookie.Persist = true
+	session.Cookie.SameSite = http.SameSiteLaxMode
+	session.Cookie.Secure = app.InProduction
+
+	app.Session = session
+
+	tc, err := render.CreateTemplateCache()
+	if err != nil {
+		log.Fatal("Cannot create template cache")
+		return err
+	}
+
+	app.TemplateCache = tc
+	app.UseCache = false
+
+	repo := handlers.NewRepo(&app)
+	handlers.NewHandlers(repo)
+
+	render.NewTemplate(&app)
+	helpers.NewHelpers(&app)
+
+	return nil
 }
