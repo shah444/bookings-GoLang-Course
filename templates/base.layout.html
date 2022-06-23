@@ -101,105 +101,16 @@
     <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker-full.min.js"></script>
     <script src="https://unpkg.com/notie"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/static/js/app.js"></script>
 
     <script>
-      const Prompt = () => {
-        const toast = (c) => {
-          const { title = "", icon = "success", position = "top-end" } = c;
-
-          const Toast = Swal.mixin({
-            toast: true,
-            position: position,
-            title: title,
-            icon: icon,
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener("mouseenter", Swal.stopTimer);
-              toast.addEventListener("mouseleave", Swal.resumeTimer);
-            },
-          });
-
-          Toast.fire({});
-        };
-
-        const success = (c) => {
-          const { title = "", text = "", footer = "" } = c;
-          Swal.fire({
-            icon: "success",
-            title: title,
-            text: text,
-            footer: footer,
-          });
-        };
-
-        const error = (c) => {
-          const { title = "", text = "", footer = "" } = c;
-          Swal.fire({
-            icon: "error",
-            title: title,
-            text: text,
-            footer: footer,
-          });
-        };
-
-        const custom = async (c) => {
-          const { msg = "", title = "" } = c;
-
-          const { value: result } = await Swal.fire({
-            title: title,
-            html: msg,
-            backdrop: false,
-            focusConfirm: false,
-            showCancelButton: true,
-            willOpen: () => {
-              if (c.willOpen !== undefined) {
-                c.willOpen();
-              }
-            },
-            preConfirm: () => {
-              return [
-                document.getElementById("start").value,
-                document.getElementById("end").value,
-              ];
-            },
-            didOpen: () => {
-              if (c.didOpen !== undefined) {
-                c.didOpen();
-              }
-            },
-          });
-
-          if (result) {
-            if (result.dismiss !== Swal.DismissReason.cancel) {
-              if (result.value !== "") {
-                if (c.callback !== undefined) {
-                  c.callback(result);
-                }
-              } else {
-                c.callback(false);
-              }
-            } else {
-              c.callback(false);
-            }
-          }
-        };
-
-        return {
-          toast: toast,
-          success: success,
-          error: error,
-          custom: custom,
-        };
-      };
-
       var attention = Prompt();
 
       const elem1 = document.getElementById("reservation-dates");
       if (elem1) {
         const rangepicker = new DateRangePicker(elem1, {
-          format: "dd-mm-yyyy",
+          format: "yyyy-mm-dd",
+          minDate: new Date(),
         });
       }
       // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -241,25 +152,20 @@
           confirmButtonText: confirmationButtonText,
         });
       };
-
-      </script>
-      {{with .Error}}
-      <script>
-        notify("error", "{{.}}")
-      </script>
-      {{end}}
-
-      {{with .Flash}}
-      <script>
-        notify("success", "{{.}}")
-      </script>
-      {{end}}
-
-      {{with .Warning}}
-      <script>
-        notify("warning", "{{.}}")
-      </script>
-      {{end}}
+    </script>
+    {{with .Error}}
+    <script>
+      notify("error", "{{.}}");
+    </script>
+    {{end}} {{with .Flash}}
+    <script>
+      notify("success", "{{.}}");
+    </script>
+    {{end}} {{with .Warning}}
+    <script>
+      notify("warning", "{{.}}");
+    </script>
+    {{end}}
   </body>
 </html>
 {{end}}

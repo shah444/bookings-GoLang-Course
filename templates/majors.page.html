@@ -48,10 +48,10 @@
               <div class="col">
                 <div class="row" id="reservation-dates-modal">
                   <div class="col">
-                    <input disabled required class="form-control" type="text" name="start" id="start" placeholder="Arrival"/>
+                    <input disabled required class="form-control" autocomplete="off" type="text" name="start" id="start" placeholder="Arrival"/>
                   </div>
                   <div class="col">
-                    <input disabled required class="form-control" type="text" name="end" id="end" placeholder="Departure"/>
+                    <input disabled required class="form-control" autocomplete="off" type="text" name="end" id="end" placeholder="Departure"/>
                   </div>
                 </div>
               </div>
@@ -59,7 +59,49 @@
           </form>
         `;
 
-      attention.custom({ msg: html, title: "Choose your date" });
+      attention.custom({
+        msg: html,
+        title: "Choose your date",
+        willOpen: () => {
+          const elem = document.getElementById("reservation-dates-modal");
+          const rp = new DateRangePicker(elem, {
+            format: "yyyy-mm-dd",
+            showOnFocus: true,
+            minDate: new Date(),
+          });
+        },
+        didOpen: () => {
+          document.getElementById("start").removeAttribute("disabled");
+          document.getElementById("end").removeAttribute("disabled");
+        },
+        callback: (result) => {
+          console.log("called");
+          let form = document.getElementById("check-availability-form");
+          let formData = new FormData(form);
+          formData.append("csrf_token", "{{.CSRFToken}}");
+          formData.append("room_id", "2");
+          fetch("/search-availability-json", { method: "post", body: formData })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.ok) {
+                attention.custom({
+                  icon: "success",
+                  msg:
+                    '<p>Room is available</p><p><a href="/book-room?id=' +
+                    data.roomID +
+                    "&s=" +
+                    data.startDate +
+                    "&e=" +
+                    data.endDate +
+                    '" class="btn btn-primary">Book Now</a></p>',
+                  showConfirmButton: false,
+                });
+              } else {
+                attention.error({ msg: "No Availability" });
+              }
+            });
+        },
+      });
     });
 </script>
 {{end}}

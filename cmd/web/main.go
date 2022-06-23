@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/shah444/bookings-GoLang-Course/internal/config"
+	"github.com/shah444/bookings-GoLang-Course/internal/driver"
 	"github.com/shah444/bookings-GoLang-Course/internal/handlers"
 	"github.com/shah444/bookings-GoLang-Course/internal/helpers"
 	"github.com/shah444/bookings-GoLang-Course/internal/models"
@@ -25,10 +26,11 @@ var app config.AppConfig
 
 // main is the main application fn
 func main() {
-	err := run()
+	db, err := run()
 	if err != nil {
 		log.Fatal("Error running application")
 	}
+	defer db.SQL.Close()
 
 	fmt.Printf("Starting application on port %s\n", portNumber)
 
@@ -41,9 +43,12 @@ func main() {
 	log.Fatal(err)
 }
 
-func run() error {
+func run() (*driver.DB, error) {
 	// What I am going to put in the session
 	gob.Register(models.Reservation{})
+	gob.Register(models.User{})
+	gob.Register(models.Room{})
+	gob.Register(models.Restriction{})
 
 	// Change this to true during production
 	app.InProduction = false
@@ -59,20 +64,29 @@ func run() error {
 
 	app.Session = session
 
+	// Connect to database
+	log.Println("connecting to database")
+	db, err := driver.ConnectSQL("host=localhost port=5432 dbname=bookings user=viditshah password=")
+	if err != nil {
+		log.Fatal("cannot connect to database! Dying...")
+	}
+
+	log.Println("connected to database...")
+
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal("Cannot create template cache")
-		return err
+		return nil, err
 	}
 
 	app.TemplateCache = tc
 	app.UseCache = false
 
-	repo := handlers.NewRepo(&app)
+	repo := handlers.NewRepo(&app, db)
 	handlers.NewHandlers(repo)
 
-	render.NewTemplate(&app)
+	render.NewRenderer(&app)
 	helpers.NewHelpers(&app)
 
-	return nil
+	return db, nil
 }
